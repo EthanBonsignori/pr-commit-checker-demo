@@ -1,12 +1,19 @@
 name: Commit Message Check
-on: [pull_request]
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - reopened
+      - synchronize
 jobs:
   check-commit-messages:
     runs-on: ubuntu-latest
     steps:
-      - name: Check Commits for Prefix
+      - name: Check All Commits for Required Prefix
         uses: gsactions/commit-message-checker@v1
         with:
           pattern: '^(fix|feat)+:\s.*'
           flags: "gm"
-          error: 'Your PR must include 1 commit message prefixed with either "fix: " or "feat: "'
+          checkAllCommitMessages: "true"
+          error: 'Your PR must include at least 1 commit message prefixed with either "fix: " or "feat: "'
