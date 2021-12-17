@@ -1,5 +1,5 @@
 name: Commit Message Check
-on: [push, pull_request]
+on: [pull_request]
 jobs:
   check-commit-messages:
     runs-on: ubuntu-latest
