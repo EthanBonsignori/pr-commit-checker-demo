@@ -1,0 +1,12 @@
+name: Commit Message Check
+on: [push, pull_request]
+jobs:
+  check-commit-messages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Commits for Prefix
+        uses: gsactions/commit-message-checker@v1
+        with:
+          pattern: '^(fix|feat)+:\s.*'
+          flags: "gm"
+          error: 'Your PR must include 1 commit message prefixed with either "fix: " or "feat: "'
